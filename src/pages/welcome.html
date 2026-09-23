@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bienvenue — Voltyx Launcher</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/window-controls.css">
+  <link rel="stylesheet" href="../css/welcome.css">
+</head>
+<body>
+
+  <!-- Titlebar -->
+  <div class="titlebar">
+    <div class="titlebar__drag"></div>
+    <div class="titlebar__controls">
+      <button type="button" class="win-btn" data-win="minimize" aria-label="Réduire">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn" data-win="maximize" aria-label="Agrandir">
+        <svg width="10" height="10" viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn win-btn--close" data-win="close" aria-label="Fermer">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="welcome">
+
+    <!-- Blobs décoratifs -->
+    <div class="welcome__blob welcome__blob--1"></div>
+    <div class="welcome__blob welcome__blob--2"></div>
+
+    <div class="welcome__inner">
+
+      <div class="welcome__logo">
+        <img src="../../assets/images/logo-voltyx.png" alt="Voltyx">
+      </div>
+
+      <h1 class="welcome__title">
+        Bienvenue sur<br>
+        <span class="welcome__title-accent">Voltyx Launcher</span>
+      </h1>
+
+      <p class="welcome__subtitle">
+        Pour commencer, connectez-vous à votre compte Lumalia. Cela nous permet de vous identifier et de sauvegarder vos préférences.
+      </p>
+
+      <div class="welcome__actions">
+        <button type="button" class="btn btn-primary" id="btn-login-lumalia">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Se connecter
+        </button>
+
+        <button type="button" class="btn btn-ghost" id="btn-skip">
+          Plus tard
+        </button>
+      </div>
+
+      <p class="welcome__note">
+        Pas encore de compte ? <a href="https://lumania.fr/inscription" target="_blank" rel="noopener">Créez-en un sur lumania.fr</a>
+      </p>
+
+    </div>
+
+  </div>
+
+  <script src="../js/window-controls.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var btnLogin = document.getElementById("btn-login-lumalia");
+      var btnSkip = document.getElementById("btn-skip");
+
+      btnLogin.addEventListener("click", function () {
+        window.voltyx.auth.openLumaliaLogin();
+      });
+
+      btnSkip.addEventListener("click", async function () {
+        await window.voltyx.onboarding.complete();
+        window.voltyx.nav.goto("index.html");
+      });
+
+      // Écoute la connexion réussie → on passe à l'app
+      window.voltyx.auth.onLumaliaUpdated(async function (data) {
+        if (data && data.success) {
+          await window.voltyx.onboarding.complete();
+          window.voltyx.nav.goto("index.html");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

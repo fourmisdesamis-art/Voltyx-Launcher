@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paramètres — Voltyx Launcher</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/window-controls.css">
+  <link rel="stylesheet" href="../css/settings.css">
+</head>
+<body>
+
+  <!-- Titlebar -->
+  <div class="titlebar">
+    <div class="titlebar__drag"></div>
+    <div class="titlebar__controls">
+      <button type="button" class="win-btn" data-win="minimize" aria-label="Réduire">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn" data-win="maximize" aria-label="Agrandir">
+        <svg width="10" height="10" viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn win-btn--close" data-win="close" aria-label="Fermer">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="app">
+
+    <!-- Sidebar principale -->
+    <aside class="sidebar">
+      <div class="sidebar__top">
+        <div class="sidebar__brand">
+          <img src="../../assets/images/logo-voltyx.png" alt="Voltyx">
+        </div>
+        <div class="sidebar__separator"></div>
+        <nav class="sidebar__servers">
+          <button type="button" class="sidebar__server" data-nav="index.html" aria-label="Lumalia" title="Lumalia">
+            <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar__bottom">
+        <button type="button" class="sidebar__item active" data-nav="settings.html" aria-label="Paramètres">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+
+        <button type="button" class="sidebar__user" id="sidebar-user" data-nav="settings.html?tab=accounts" aria-label="Mon compte">
+          <img src="../../assets/images/skins/default_skin.png" alt="" id="sidebar-user-img">
+          <span class="sidebar__user-status"></span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Contenu -->
+    <main class="content">
+
+      <div class="settings-page">
+
+        <header class="settings-page__header">
+          <h1>Paramètres</h1>
+          <p>Configurez votre expérience Voltyx Launcher.</p>
+        </header>
+
+        <div class="settings-layout">
+
+          <!-- Sidebar interne -->
+          <aside class="settings-nav">
+            <button type="button" class="settings-nav__item active" data-tab="general">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Paramètres
+            </button>
+            <button type="button" class="settings-nav__item" data-tab="accounts">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Comptes
+            </button>
+            <button type="button" class="settings-nav__item" data-tab="crashes">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Crashes
+            </button>
+            <button type="button" class="settings-nav__item" data-tab="contracts">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Contrats
+            </button>
+          </aside>
+
+          <!-- Contenu des onglets -->
+          <div class="settings-content">
+
+            <!-- Onglet Paramètres -->
+            <div class="settings-panel active" data-panel="general">
+              <h2>Paramètres généraux</h2>
+              <p class="settings-panel__subtitle">Configurez la RAM, Java et le dossier d'installation.</p>
+
+              <div class="settings-card">
+                <h3>Mémoire allouée (RAM)</h3>
+                <p>Définissez la quantité de RAM allouée à Minecraft.</p>
+                <input type="range" min="1024" max="16384" step="512" value="4096" id="ram-slider">
+                <div class="settings-card__value"><span id="ram-value">4096</span> Mo</div>
+              </div>
+
+              <div class="settings-card">
+                <h3>Dossier d'installation</h3>
+                <p>Emplacement des fichiers du launcher.</p>
+                <div class="settings-card__path">
+                  <code id="install-path">C:\Users\lucas\AppData\Roaming\.VoltyxLauncher</code>
+                </div>
+              </div>
+
+              <div class="settings-card">
+                <h3>Java</h3>
+                <p>Chemin vers votre installation Java.</p>
+                <div class="settings-card__path">
+                  <code id="java-path">Détection automatique</code>
+                </div>
+              </div>
+
+              <div class="settings-card">
+                <h3>Vérification de l'installation</h3>
+                <p>Vérifiez que tous les fichiers de Minecraft et Forge sont intacts.</p>
+                <button type="button" class="btn btn-primary btn-sm" id="btn-repair">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                  Vérifier maintenant
+                </button>
+                <div class="settings-card__value" style="margin-top: 0.75rem; font-size: 0.85rem;">
+                  <span id="repair-status">Jamais vérifié</span>
+                </div>
+              </div>
+
+              <div class="settings-card">
+                <h3>Discord Rich Presence</h3>
+                <p>Affichez votre activité Voltyx Launcher sur votre profil Discord.</p>
+                <label class="settings-toggle">
+                  <input type="checkbox" id="discord-rpc-toggle" checked>
+                  <span class="settings-toggle__slider"></span>
+                  <span class="settings-toggle__label">Afficher mon activité</span>
+                </label>
+                <div class="settings-card__value" style="margin-top: 0.75rem; font-size: 0.85rem;">
+                  État : <span id="discord-status">Vérification…</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Onglet Comptes -->
+            <div class="settings-panel" data-panel="accounts">
+              <h2>Comptes</h2>
+              <p class="settings-panel__subtitle">Connectez vos comptes Microsoft et Lumalia.</p>
+
+              <!-- Compte Microsoft -->
+              <div class="account-card" id="account-microsoft">
+                <div class="account-card__icon account-card__icon--ms">
+                  <span>M</span>
+                </div>
+                <div class="account-card__body">
+                  <h3>Compte Microsoft</h3>
+                  <p>Connectez votre compte Microsoft pour jouer à Lumalia</p>
+                </div>
+                <button type="button" class="account-card__btn" id="btn-add-microsoft">
+                  Ajouter
+                </button>
+              </div>
+
+              <!-- Compte Lumalia -->
+              <div class="account-card" id="account-lumalia">
+                <div class="account-card__icon account-card__icon--lumalia">
+                  <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
+                </div>
+                <div class="account-card__body">
+                  <h3>Compte Lumalia</h3>
+                  <p>Connectez votre compte Lumalia au launcher pour jouer à Lumalia</p>
+                </div>
+                <button type="button" class="account-card__btn" id="btn-add-lumalia">
+                  Ajouter
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Onglet Crashes -->
+            <div class="settings-panel" data-panel="crashes">
+              <h2>Crashes</h2>
+              <p class="settings-panel__subtitle">Historique des plantages récents.</p>
+              <div class="settings-empty">Aucun crash enregistré.</div>
+            </div>
+
+            <!-- Onglet Contrats -->
+            <div class="settings-panel" data-panel="contracts">
+              <h2>Contrats</h2>
+              <p class="settings-panel__subtitle">Documents légaux et conditions d'utilisation.</p>
+              <div class="settings-empty">Aucun document.</div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <footer class="settings-page__footer">
+          <span>Version BETA 0.1.0</span>
+        </footer>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/window-controls.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/settings.js"></script>
+</body>
+</html>

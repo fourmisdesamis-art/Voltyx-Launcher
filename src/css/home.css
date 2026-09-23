@@ -1,0 +1,340 @@
+/* =========================================================
+   VOLTYX LAUNCHER — home.css
+   ========================================================= */
+
+.home {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 3rem;
+  overflow: hidden;
+}
+
+/* ---------- Blobs de fond ---------- */
+.home__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.home__blob--1 {
+  width: 500px;
+  height: 500px;
+  background: #7c5cff;
+  opacity: 0.15;
+  top: -200px;
+  left: -150px;
+}
+.home__blob--2 {
+  width: 400px;
+  height: 400px;
+  background: #8ad4ff;
+  opacity: 0.1;
+  bottom: -150px;
+  right: -100px;
+}
+
+/* ---------- Header ---------- */
+.home__header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.home__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.home__brand-logo {
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  object-fit: contain;
+}
+.home__brand-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.home__header-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Zone principale ---------- */
+.home__main {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home__hero {
+  text-align: center;
+  max-width: 640px;
+}
+
+.home__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+
+.home__title-accent {
+  background: linear-gradient(135deg, #7c5cff, #b39bff 60%, #8ad4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.home__subtitle {
+  font-size: 1.05rem;
+  color: var(--text-soft);
+  margin-bottom: 2.5rem;
+}
+
+/* Bouton Jouer */
+.home__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1rem 3rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all var(--t-base);
+  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.35);
+}
+.home__play:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(124, 92, 255, 0.5);
+}
+.home__play:active {
+  transform: translateY(0);
+}
+.home__play:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.home__play svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Statut sous le bouton */
+.home__launcher-status {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Footer ---------- */
+.home__footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.home__version {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Dot pulsant ---------- */
+.home__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* ---------- Barre de progression ---------- */
+.home__progress {
+  margin-top: 2rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home__progress-label {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  margin-bottom: 0.75rem;
+  text-align: center;
+  min-height: 1.2em;
+}
+
+.home__progress-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-hover);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.home__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #b39bff);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.home__progress-percent {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* ---------- Barre de progression améliorée ---------- */
+.home__progress {
+  margin-top: 2rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  box-shadow: 0 8px 24px rgba(124, 92, 255, 0.08);
+}
+
+.home__progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.home__progress-label {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+.home__progress-percent {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.home__progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-hover);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.home__progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), #b39bff, #8ad4ff, var(--accent));
+  background-size: 200% 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  position: relative;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Effet de pulsation quand ça charge */
+.home__progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.home__progress-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  gap: 1rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.home__progress-file {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  font-family: "Geist Mono", monospace;
+}
+
+.home__progress-details {
+  flex-shrink: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 500;
+  color: var(--text-soft);
+}

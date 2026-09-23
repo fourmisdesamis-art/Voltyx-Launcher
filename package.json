@@ -1,0 +1,22 @@
+{
+  "name": "voltyx-launcher",
+  "version": "0.1.0",
+  "description": "Launcher officiel de Voltyx",
+  "main": "main.js",
+  "author": "Voltyx Team",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev"
+  },
+  "devDependencies": {
+    "electron": "^32.0.0"
+  },
+  "dependencies": {
+    "@xmcl/core": "2.14.0",
+    "@xmcl/installer": "4.4.0",
+    "adm-zip": "^0.5.16",
+    "discord-rpc": "^4.0.1",
+    "msmc": "^5.0.5"
+  }
+}

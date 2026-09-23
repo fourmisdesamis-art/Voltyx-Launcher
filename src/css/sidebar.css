@@ -1,0 +1,170 @@
+/* =========================================================
+   VOLTYX LAUNCHER — sidebar.css
+   ========================================================= */
+
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  padding: 1rem 0;
+  flex-shrink: 0;
+}
+
+.sidebar__top,
+.sidebar__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ---------- Logo Voltyx (marque, fixe) ---------- */
+.sidebar__brand {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.sidebar__brand img {
+  width: 36px;
+  height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  object-fit: contain;
+}
+
+/* ---------- Séparateur ---------- */
+.sidebar__separator {
+  width: 32px;
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+/* ---------- Serveurs (logos cliquables) ---------- */
+.sidebar__servers {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sidebar__server {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  background: transparent;
+  border: 2px solid transparent;
+  transition: all var(--t-fast);
+  flex-shrink: 0;
+  padding: 0;
+  position: relative;
+}
+.sidebar__server img {
+  width: 32px;
+  height: 32px;
+  max-width: 32px;
+  max-height: 32px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.sidebar__server:hover {
+  background: var(--bg-hover);
+}
+.sidebar__server.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+/* ---------- Boutons génériques (Paramètres, etc.) ---------- */
+.sidebar__item {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  flex-shrink: 0;
+  padding: 0;
+}
+.sidebar__item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.sidebar__item.active {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px rgba(124, 92, 255, 0.4);
+}
+.sidebar__item svg {
+  width: 20px !important;
+  height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
+}
+
+/* ---------- Avatar utilisateur ---------- */
+.sidebar__user {
+  position: relative;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color var(--t-fast);
+  flex-shrink: 0;
+  padding: 0;
+}
+.sidebar__user:hover {
+  border-color: var(--accent);
+}
+.sidebar__user img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  object-fit: cover;
+}
+.sidebar__user-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success);
+  border: 2px solid var(--bg);
+}
+
+/* ---------- Avatar avec initiale (utilisateur connecté) ---------- */
+.sidebar__user-avatar {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--accent), #b39bff);
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 50%;
+}
+
+/* Pastille verte seulement si connecté */
+.sidebar__user:not(.sidebar__user--connected) .sidebar__user-status {
+  background: var(--text-muted);
+}
+
+/* Halo quand connecté */
+.sidebar__user--connected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}

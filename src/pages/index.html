@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voltyx Launcher</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/window-controls.css">
+</head>
+<body>
+
+  <!-- Barre de titre personnalisée -->
+  <div class="titlebar">
+    <div class="titlebar__drag"></div>
+    <div class="titlebar__controls">
+      <button type="button" class="win-btn" data-win="minimize" aria-label="Réduire">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn" data-win="maximize" aria-label="Agrandir">
+        <svg width="10" height="10" viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button type="button" class="win-btn win-btn--close" data-win="close" aria-label="Fermer">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Layout principal -->
+  <div class="app">
+
+    <!-- Sidebar verticale -->
+    <aside class="sidebar">
+
+      <div class="sidebar__top">
+
+        <!-- Logo Voltyx (toujours en haut, non cliquable) -->
+        <div class="sidebar__brand" aria-label="Voltyx">
+          <img src="../../assets/images/logo-voltyx.png" alt="Voltyx">
+        </div>
+
+        <!-- Séparateur -->
+        <div class="sidebar__separator"></div>
+
+        <!-- Serveurs -->
+        <nav class="sidebar__servers">
+          <button type="button" class="sidebar__server active" data-nav="index.html" aria-label="Lumalia" title="Lumalia">
+            <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
+          </button>
+        </nav>
+
+      </div>
+
+      <div class="sidebar__bottom">
+
+        <button type="button" class="sidebar__item" data-nav="settings.html" aria-label="Paramètres">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </button>
+
+        <button type="button" class="sidebar__user" id="sidebar-user" data-nav="settings.html?tab=accounts" aria-label="Mon compte">
+          <img src="../../assets/images/skins/default_skin.png" alt="" id="sidebar-user-img">
+          <span class="sidebar__user-status"></span>
+        </button>
+
+      </div>
+    </aside>
+
+    <!-- Contenu -->
+    <main class="content">
+
+      <div class="content__page active" data-page="lumalia">
+        <div class="home">
+
+          <div class="home__blob home__blob--1"></div>
+          <div class="home__blob home__blob--2"></div>
+
+          <header class="home__header">
+            <div class="home__brand">
+              <img src="../../assets/images/logo-lumalia.png" alt="Lumalia" class="home__brand-logo">
+              <span class="home__brand-name">Lumalia</span>
+            </div>
+            <div class="home__header-status">
+              <span class="home__status-dot"></span>
+              <span>Réseau opérationnel</span>
+            </div>
+          </header>
+
+          <div class="home__main">
+            <div class="home__hero">
+              <h1 class="home__title">
+                Bienvenue sur<br>
+                <span class="home__title-accent">Lumalia</span>
+              </h1>
+
+              <p class="home__subtitle">
+                Forge 1.16.5 · Rejoignez l'aventure et explorez nos univers Minecraft.
+              </p>
+
+              <button type="button" class="home__play" id="play-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/></svg>
+                <span id="play-btn-label">Jouer</span>
+              </button>
+
+              <div class="home__launcher-status">
+                <span id="launcher-status">Prêt à lancer</span>
+              </div>
+
+              <!-- Barre de progression améliorée -->
+              <div class="home__progress" id="progress-container" style="display:none;">
+                <div class="home__progress-top">
+                  <div class="home__progress-label" id="progress-label">Préparation…</div>
+                  <div class="home__progress-percent" id="progress-percent">0%</div>
+                </div>
+
+                <div class="home__progress-bar">
+                  <div class="home__progress-fill" id="progress-fill"></div>
+                </div>
+
+                <div class="home__progress-bottom">
+                  <span class="home__progress-file" id="progress-file">—</span>
+                  <span class="home__progress-details" id="progress-details"></span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <footer class="home__footer">
+            <span class="home__version">Version BETA 0.1.0</span>
+          </footer>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/window-controls.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

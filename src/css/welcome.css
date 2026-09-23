@@ -1,0 +1,101 @@
+/* =========================================================
+   VOLTYX LAUNCHER — welcome.css
+   Écran de bienvenue (onboarding)
+   ========================================================= */
+
+.welcome {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+/* Blobs */
+.welcome__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
+.welcome__blob--1 {
+  width: 500px;
+  height: 500px;
+  background: #7c5cff;
+  opacity: 0.2;
+  top: -200px;
+  left: -150px;
+}
+.welcome__blob--2 {
+  width: 400px;
+  height: 400px;
+  background: #8ad4ff;
+  opacity: 0.15;
+  bottom: -150px;
+  right: -100px;
+}
+
+.welcome__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  text-align: center;
+}
+
+.welcome__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.welcome__logo img {
+  width: 80px;
+  height: 80px;
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.welcome__title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+.welcome__title-accent {
+  background: linear-gradient(135deg, #7c5cff, #b39bff 60%, #8ad4ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.welcome__subtitle {
+  font-size: 1rem;
+  color: var(--text-soft);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+.welcome__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.welcome__note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.welcome__note a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

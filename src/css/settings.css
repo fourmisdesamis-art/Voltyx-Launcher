@@ -1,0 +1,335 @@
+/* =========================================================
+   VOLTYX LAUNCHER — settings.css
+   ========================================================= */
+
+.settings-page {
+  padding: 2rem 3rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-page__header {
+  margin-bottom: 2rem;
+}
+.settings-page__header h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.settings-page__header p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Layout 2 colonnes ---------- */
+.settings-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2rem;
+  flex: 1;
+  align-items: start;
+}
+
+/* ---------- Sidebar interne ---------- */
+.settings-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.settings-nav__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-md);
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+.settings-nav__item:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+.settings-nav__item.active {
+  background: var(--bg-elevated);
+  color: var(--text);
+  border-left: 3px solid var(--accent);
+  padding-left: calc(0.9rem - 3px);
+}
+.settings-nav__item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ---------- Contenu ---------- */
+.settings-content {
+  min-width: 0;
+}
+
+.settings-panel {
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+.settings-panel.active {
+  display: block;
+}
+.settings-panel h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.settings-panel__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 1.75rem;
+}
+
+/* ---------- Cartes de paramètres ---------- */
+.settings-card {
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  margin-bottom: 1rem;
+}
+.settings-card h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+.settings-card p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Slider RAM */
+.settings-card input[type="range"] {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--bg-hover);
+  outline: none;
+  margin-bottom: 0.75rem;
+}
+.settings-card input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(124, 92, 255, 0.5);
+}
+
+.settings-card__value {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.settings-card__path {
+  padding: 0.6rem 0.9rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: "Geist Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  overflow-x: auto;
+}
+
+.settings-card__path code {
+  white-space: nowrap;
+}
+
+/* ---------- Cartes de compte ---------- */
+.account-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  margin-bottom: 1rem;
+  transition: border-color var(--t-fast);
+}
+.account-card:hover {
+  border-color: var(--border-strong);
+}
+
+.account-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #fff;
+}
+.account-card__icon--ms {
+  background: linear-gradient(135deg, #0078d4, #00a4ef);
+}
+.account-card__icon--lumalia {
+  background: linear-gradient(135deg, #7c5cff, #b39bff);
+}
+.account-card__icon--lumalia img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.account-card__body {
+  flex: 1;
+  min-width: 0;
+}
+.account-card__body h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.2rem;
+}
+.account-card__body p {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.account-card__btn {
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--t-fast);
+  flex-shrink: 0;
+}
+.account-card__btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+.account-card__btn--connected {
+  background: rgba(34, 197, 94, 0.15);
+  color: var(--success);
+}
+.account-card__btn--connected:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--danger);
+}
+
+/* Compte connecté (state) */
+.account-card--connected .account-card__body h3::after {
+  content: " ✓";
+  color: var(--success);
+  font-weight: 700;
+}
+
+/* ---------- Empty state ---------- */
+.settings-empty {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Footer ---------- */
+.settings-page__footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+}
+.settings-page__footer span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: "Space Grotesk", sans-serif;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Toggle Discord RPC ---------- */
+.settings-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.settings-toggle input {
+  display: none;
+}
+
+.settings-toggle__slider {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--border-strong);
+  border-radius: 999px;
+  transition: background var(--t-fast);
+  flex-shrink: 0;
+}
+
+.settings-toggle__slider::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform var(--t-fast);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.settings-toggle input:checked + .settings-toggle__slider {
+  background: var(--accent);
+}
+
+.settings-toggle input:checked + .settings-toggle__slider::after {
+  transform: translateX(20px);
+}
+
+.settings-toggle__label {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+#btn-repair {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+#repair-status {
+  font-family: "Inter", sans-serif;
+}

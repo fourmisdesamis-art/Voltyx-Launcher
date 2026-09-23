@@ -1,0 +1,221 @@
+/* =========================================================
+   VOLTYX LAUNCHER — login.css
+   Fenêtre de connexion Lumalia
+   ========================================================= */
+
+.login {
+  padding: 2rem 1.75rem;
+  padding-top: calc(var(--titlebar-height) + 2rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo en haut */
+.login__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.login__logo img {
+  width: 56px;
+  height: 56px;
+  max-width: 56px;
+  max-height: 56px;
+  object-fit: contain;
+}
+
+/* Header */
+.login__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.login__header h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.login__header p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.login__header--small h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+
+/* Form */
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.login__field label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  letter-spacing: 0.03em;
+}
+.login__field input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 0.92rem;
+  font-family: inherit;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.login__field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.login__field input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Submit */
+.login__submit {
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all var(--t-base);
+  cursor: pointer;
+}
+.login__submit:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(124, 92, 255, 0.4);
+}
+.login__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Status */
+.login__status {
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 1.2em;
+  color: var(--text-soft);
+}
+.login__status--error {
+  color: var(--danger);
+}
+.login__status--success {
+  color: var(--success);
+}
+
+.login {
+  padding: 2rem 1.75rem;
+  padding-top: calc(var(--titlebar-height) + 2rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.login__logo img {
+  width: 56px; height: 56px;
+  max-width: 56px; max-height: 56px;
+  object-fit: contain;
+}
+
+.login__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.login__header h1 {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+}
+.login__header p {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.login__field label {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+.login__field input {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  color: var(--text);
+  font-size: 0.92rem;
+}
+.login__field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.login__submit {
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.login__submit:hover {
+  background: var(--accent-hover);
+}
+.login__submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.login__status {
+  font-size: 0.85rem;
+  text-align: center;
+  min-height: 1.2em;
+  color: var(--text-soft);
+}
+.login__status--error { color: var(--danger); }
+.login__status--success { color: var(--success); }

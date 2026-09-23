@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion Lumalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/window-controls.css">
+</head>
+<body>
+
+  <div class="titlebar">
+    <div class="titlebar__drag"></div>
+    <div class="titlebar__controls">
+      <button type="button" class="win-btn win-btn--close" data-win="close" aria-label="Fermer">
+        <svg width="10" height="10" viewBox="0 0 10 10"><line x1="1" y1="1" x2="9" y2="9" stroke="currentColor" stroke-width="1.2"/><line x1="9" y1="1" x2="1" y2="9" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="login">
+    <div class="login__logo">
+      <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
+    </div>
+
+    <div class="login__header">
+      <h1>Connexion Lumalia</h1>
+      <p>Connectez-vous à votre compte Lumalia.</p>
+    </div>
+
+    <form class="login__form" id="login-form">
+      <div class="login__field">
+        <label for="login-email">Adresse email</label>
+        <input type="email" id="login-email" placeholder="vous@exemple.com" required autocomplete="email">
+      </div>
+
+      <div class="login__field">
+        <label for="login-password">Mot de passe</label>
+        <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+      </div>
+
+      <div class="login__status" id="login-status"></div>
+
+      <button type="submit" class="login__submit" id="login-submit">
+        Se connecter
+      </button>
+    </form>
+  </div>
+
+  <script src="../js/window-controls.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var form = document.getElementById("login-form");
+      var status = document.getElementById("login-status");
+      var submit = document.getElementById("login-submit");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        status.textContent = "";
+        status.className = "login__status";
+
+        var email = document.getElementById("login-email").value.trim();
+        var password = document.getElementById("login-password").value;
+
+        if (!email || !email.includes("@")) {
+          status.textContent = "Adresse email invalide.";
+          status.className = "login__status login__status--error";
+          return;
+        }
+        if (password.length < 8) {
+          status.textContent = "Mot de passe trop court.";
+          status.className = "login__status login__status--error";
+          return;
+        }
+
+        submit.disabled = true;
+        submit.textContent = "Connexion…";
+        status.textContent = "Vérification…";
+
+        var result = await window.voltyx.auth.lumaliaLogin(email, password);
+
+        if (result.success) {
+          status.textContent = "✅ Connexion réussie !";
+          status.className = "login__status login__status--success";
+          setTimeout(function () { window.close(); }, 600);
+        } else {
+          status.textContent = result.message || "Erreur de connexion.";
+          status.className = "login__status login__status--error";
+          submit.disabled = false;
+          submit.textContent = "Se connecter";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
