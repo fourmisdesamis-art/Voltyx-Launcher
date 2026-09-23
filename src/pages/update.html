@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mise à jour — Voltyx Launcher</title>
+  <link rel="stylesheet" href="../css/update.css" />
+</head>
+<body>
+  <div class="update-container">
+
+    <!-- Barre de titre personnalisée -->
+    <div class="titlebar">
+      <div class="titlebar-title">Mise à jour</div>
+      <button class="titlebar-close" id="btn-close" title="Fermer">
+        <svg width="12" height="12" viewBox="0 0 12 12">
+          <path d="M1 1 L11 11 M11 1 L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="content">
+
+      <!-- État 1 : Nouvelle mise à jour disponible -->
+      <div class="state" id="state-available">
+        <div class="icon-circle">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h1>Nouvelle mise à jour</h1>
+        <p class="subtitle">Une nouvelle version du launcher est disponible.</p>
+
+        <div class="version-box">
+          <div class="version-line">
+            <span class="label">Actuelle</span>
+            <span class="version-value" id="current-version">v0.1.0</span>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="version-line">
+            <span class="label">Nouvelle</span>
+            <span class="version-value new" id="new-version">v0.1.1</span>
+          </div>
+        </div>
+
+        <button class="btn primary" id="btn-download">
+          Installer la mise à jour
+        </button>
+        <button class="btn ghost" id="btn-later">
+          Plus tard
+        </button>
+      </div>
+
+      <!-- État 2 : Téléchargement en cours -->
+      <div class="state hidden" id="state-downloading">
+        <div class="icon-circle downloading">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h1>Téléchargement…</h1>
+        <p class="subtitle">Merci de patienter, la mise à jour est en cours de téléchargement.</p>
+
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+          <div class="progress-text">
+            <span id="progress-percent">0%</span>
+            <span id="progress-details">— / —</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- État 3 : Prêt à installer -->
+      <div class="state hidden" id="state-ready">
+        <div class="icon-circle ready">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h1>Prêt à installer</h1>
+        <p class="subtitle">La mise à jour est prête. Le launcher va redémarrer pour l'installer.</p>
+
+        <button class="btn primary" id="btn-install">
+          Installer et redémarrer
+        </button>
+        <button class="btn ghost" id="btn-later-2">
+          Plus tard
+        </button>
+      </div>
+
+      <!-- État 4 : Erreur -->
+      <div class="state hidden" id="state-error">
+        <div class="icon-circle error">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <h1>Erreur</h1>
+        <p class="subtitle" id="error-message">Une erreur est survenue.</p>
+
+        <button class="btn ghost" id="btn-close-error">
+          Fermer
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/update.js"></script>
+</body>
+</html>

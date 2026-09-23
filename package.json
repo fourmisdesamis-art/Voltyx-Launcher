@@ -3,20 +3,78 @@
   "version": "0.1.0",
   "description": "Launcher officiel de Voltyx",
   "main": "main.js",
-  "author": "Voltyx Team",
+  "author": "Voltyx Studios",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fourmisdesamis-art/Voltyx-Launcher.git"
+  },
   "scripts": {
     "start": "electron .",
-    "dev": "electron . --dev"
+    "dev": "electron . --dev",
+    "dist": "electron-builder --win --publish never",
+    "release": "electron-builder --win --publish always"
   },
   "devDependencies": {
-    "electron": "^32.0.0"
+    "electron": "^32.0.0",
+    "electron-builder": "^25.1.8"
   },
   "dependencies": {
     "@xmcl/core": "2.14.0",
     "@xmcl/installer": "4.4.0",
     "adm-zip": "^0.5.16",
     "discord-rpc": "^4.0.1",
+    "electron-updater": "^6.3.9",
     "msmc": "^5.0.5"
+  },
+  "build": {
+    "appId": "com.voltyx.launcher",
+    "productName": "Voltyx Launcher",
+    "directories": {
+      "output": "dist-build",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "launcher/**/*",
+      "src/**/*",
+      "assets/**/*",
+      "!**/*.md",
+      "!**/test-*.js"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/images/logo.ico",
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Voltyx Launcher",
+      "installerIcon": "assets/images/logo.ico",
+      "uninstallerIcon": "assets/images/logo.ico",
+      "installerHeaderIcon": "assets/images/logo.ico",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "fourmisdesamis-art",
+        "repo": "Voltyx-Launcher",
+        "releaseType": "release"
+      }
+    ]
   }
 }

@@ -5,7 +5,7 @@
 
 const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
-const fs = require("fs"); // ✅ AJOUT : requis pour install:quickCheck
+const fs = require("fs");
 
 const paths = require("./launcher/paths");
 const accounts = require("./launcher/accounts");
@@ -16,6 +16,7 @@ const launcher = require("./launcher/minecraft/launcher");
 const microsoftAuth = require("./launcher/auth/microsoft");
 const lumaliaAuth = require("./launcher/auth/lumalia");
 const discordRPC = require("./launcher/discord-rpc");
+const updater = require("./launcher/update-manager");
 
 const isDev = process.argv.includes("--dev");
 
@@ -43,7 +44,6 @@ function createWindow() {
     }
   });
 
-  // ⚠️ Vérifie si l'onboarding est terminé
   const cfg = config.load();
   const startPage = cfg.onboardingDone ? "index.html" : "welcome.html";
   mainWindow.loadFile(path.join(__dirname, "src", "pages", startPage));
@@ -355,6 +355,31 @@ ipcMain.handle("discord:isReady", () => {
 });
 
 // ============================================================
+// IPC : Auto-Updater
+// ============================================================
+ipcMain.handle("updater:check", async () => {
+  await updater.checkForUpdates(mainWindow, false);
+  return { success: true };
+});
+
+ipcMain.handle("updater:download", async () => {
+  await updater.downloadUpdate();
+  return { success: true };
+});
+
+ipcMain.on("updater:install", () => {
+  updater.installUpdate();
+});
+
+ipcMain.on("updater:closeWindow", () => {
+  updater.closeUpdateWindow();
+});
+
+ipcMain.handle("updater:getVersion", () => {
+  return { version: app.getVersion() };
+});
+
+// ============================================================
 // CYCLE DE VIE
 // ============================================================
 app.whenReady().then(async () => {
@@ -369,7 +394,19 @@ app.whenReady().then(async () => {
     console.log("[Discord] Désactivé dans les paramètres");
   }
 
+  // Init de l'auto-updater
+  updater.init();
+
   createWindow();
+
+  // Check des mises à jour au démarrage (silencieux en dev)
+  setTimeout(() => {
+    if (!isDev) {
+      updater.checkForUpdates(mainWindow, true);
+    } else {
+      console.log("[Updater] Mode dev — check désactivé");
+    }
+  }, 3000);
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();

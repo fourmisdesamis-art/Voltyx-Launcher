@@ -47,7 +47,7 @@ contextBridge.exposeInMainWorld("voltyx", {
     repair: () => ipcRenderer.invoke("install:repair"),
     quickCheck: () => ipcRenderer.invoke("install:quickCheck"),
     onProgress: (cb) => ipcRenderer.on("install:progress", (e, d) => cb(d))
-   },
+  },
 
   // Jeu
   game: {
@@ -58,14 +58,12 @@ contextBridge.exposeInMainWorld("voltyx", {
 
   // Auth
   auth: {
-    // Lumalia
     openLumaliaLogin: () => ipcRenderer.send("auth:openLumaliaLogin"),
     lumaliaLogin: (email, password) => ipcRenderer.invoke("auth:lumaliaLogin", email, password),
     lumaliaLogout: () => ipcRenderer.invoke("auth:lumaliaLogout"),
     lumaliaSession: () => ipcRenderer.invoke("auth:lumaliaSession"),
     onLumaliaUpdated: (cb) => ipcRenderer.on("auth:lumaliaUpdated", (e, d) => cb(d)),
 
-    // Microsoft
     microsoftLogin: () => ipcRenderer.invoke("auth:microsoftLogin"),
     microsoftLogout: () => ipcRenderer.invoke("auth:microsoftLogout"),
     microsoftSession: () => ipcRenderer.invoke("auth:microsoftSession"),
@@ -79,5 +77,23 @@ contextBridge.exposeInMainWorld("voltyx", {
     connect: () => ipcRenderer.invoke("discord:connect"),
     disconnect: () => ipcRenderer.invoke("discord:disconnect"),
     isReady: () => ipcRenderer.invoke("discord:isReady")
+  },
+
+  // Auto-Updater
+  updater: {
+    // Actions
+    check: () => ipcRenderer.invoke("updater:check"),
+    download: () => ipcRenderer.invoke("updater:download"),
+    install: () => ipcRenderer.send("updater:install"),
+    closeWindow: () => ipcRenderer.send("updater:closeWindow"),
+    getVersion: () => ipcRenderer.invoke("updater:getVersion"),
+
+    // Events
+    onChecking: (cb) => ipcRenderer.on("updater:checking", () => cb()),
+    onUpdateAvailable: (cb) => ipcRenderer.on("updater:updateAvailable", (e, d) => cb(d)),
+    onUpdateNotAvailable: (cb) => ipcRenderer.on("updater:updateNotAvailable", (e, d) => cb(d)),
+    onDownloadProgress: (cb) => ipcRenderer.on("updater:downloadProgress", (e, d) => cb(d)),
+    onUpdateDownloaded: (cb) => ipcRenderer.on("updater:updateDownloaded", (e, d) => cb(d)),
+    onError: (cb) => ipcRenderer.on("updater:error", (e, d) => cb(d))
   }
 });
