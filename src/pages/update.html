@@ -1,15 +1,21 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mise à jour — Voltyx Launcher</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../css/update.css" />
+
+  <script src="../js/theme.js"></script>
 </head>
 <body>
   <div class="update-container">
 
-    <!-- Barre de titre personnalisée -->
     <div class="titlebar">
       <div class="titlebar-title">Mise à jour</div>
       <button class="titlebar-close" id="btn-close" title="Fermer">
@@ -21,7 +27,6 @@
 
     <div class="content">
 
-      <!-- État 1 : Nouvelle mise à jour disponible -->
       <div class="state" id="state-available">
         <div class="icon-circle">
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
@@ -31,7 +36,7 @@
         </div>
 
         <h1>Nouvelle mise à jour</h1>
-        <p class="subtitle">Une nouvelle version du launcher est disponible.</p>
+        <p class="subtitle">Une nouvelle version du launcher est disponible !</p>
 
         <div class="version-box">
           <div class="version-line">
@@ -53,7 +58,6 @@
         </button>
       </div>
 
-      <!-- État 2 : Téléchargement en cours -->
       <div class="state hidden" id="state-downloading">
         <div class="icon-circle downloading">
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
@@ -63,7 +67,7 @@
         </div>
 
         <h1>Téléchargement…</h1>
-        <p class="subtitle">Merci de patienter, la mise à jour est en cours de téléchargement.</p>
+        <p class="subtitle">Merci de patienter, la mise à jour est en cours de téléchargement</p>
 
         <div class="progress-container">
           <div class="progress-bar">
@@ -76,7 +80,6 @@
         </div>
       </div>
 
-      <!-- État 3 : Prêt à installer -->
       <div class="state hidden" id="state-ready">
         <div class="icon-circle ready">
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
@@ -85,7 +88,7 @@
         </div>
 
         <h1>Prêt à installer</h1>
-        <p class="subtitle">La mise à jour est prête. Le launcher va redémarrer pour l'installer.</p>
+        <p class="subtitle">La mise à jour est prête. Le launcher va redémarrer pour l'installer</p>
 
         <button class="btn primary" id="btn-install">
           Installer et redémarrer
@@ -95,7 +98,6 @@
         </button>
       </div>
 
-      <!-- État 4 : Erreur -->
       <div class="state hidden" id="state-error">
         <div class="icon-circle error">
           <svg width="42" height="42" viewBox="0 0 24 24" fill="none">
@@ -105,7 +107,7 @@
         </div>
 
         <h1>Erreur</h1>
-        <p class="subtitle" id="error-message">Une erreur est survenue.</p>
+        <p class="subtitle" id="error-message">Une erreur est survenue !</p>
 
         <button class="btn ghost" id="btn-close-error">
           Fermer

@@ -7,12 +7,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/window-controls.css">
   <link rel="stylesheet" href="../css/settings.css">
+
+  <script src="../js/theme.js"></script>
 </head>
 <body>
 
@@ -67,7 +69,7 @@
 
         <header class="settings-page__header">
           <h1>Paramètres</h1>
-          <p>Configurez votre expérience Voltyx Launcher.</p>
+          <p>Configurez votre expérience sur le Launcher</p>
         </header>
 
         <div class="settings-layout">
@@ -76,7 +78,11 @@
           <aside class="settings-nav">
             <button type="button" class="settings-nav__item active" data-tab="general">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-              Paramètres
+              Général
+            </button>
+            <button type="button" class="settings-nav__item" data-tab="appearance">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+              Apparence
             </button>
             <button type="button" class="settings-nav__item" data-tab="accounts">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -92,32 +98,31 @@
             </button>
           </aside>
 
-          <!-- Contenu des onglets -->
           <div class="settings-content">
 
-            <!-- Onglet Paramètres -->
+            <!-- Onglet Général -->
             <div class="settings-panel active" data-panel="general">
               <h2>Paramètres généraux</h2>
-              <p class="settings-panel__subtitle">Configurez la RAM, Java et le dossier d'installation.</p>
+              <p class="settings-panel__subtitle">Configurez la RAM, Java et le dossier d'installation</p>
 
               <div class="settings-card">
                 <h3>Mémoire allouée (RAM)</h3>
-                <p>Définissez la quantité de RAM allouée à Minecraft.</p>
+                <p>Définissez la quantité de RAM allouée à Minecraft</p>
                 <input type="range" min="1024" max="16384" step="512" value="4096" id="ram-slider">
                 <div class="settings-card__value"><span id="ram-value">4096</span> Mo</div>
               </div>
 
               <div class="settings-card">
                 <h3>Dossier d'installation</h3>
-                <p>Emplacement des fichiers du launcher.</p>
+                <p>Emplacement des fichiers du launcher</p>
                 <div class="settings-card__path">
-                  <code id="install-path">C:\Users\lucas\AppData\Roaming\.VoltyxLauncher</code>
+                  <code id="install-path">C:\Users\[nom d'utilisateur]\AppData\Roaming\.VoltyxLauncher</code>
                 </div>
               </div>
 
               <div class="settings-card">
                 <h3>Java</h3>
-                <p>Chemin vers votre installation Java.</p>
+                <p>Chemin vers votre installation Java</p>
                 <div class="settings-card__path">
                   <code id="java-path">Détection automatique</code>
                 </div>
@@ -125,7 +130,7 @@
 
               <div class="settings-card">
                 <h3>Vérification de l'installation</h3>
-                <p>Vérifiez que tous les fichiers de Minecraft et Forge sont intacts.</p>
+                <p>Vérifiez que tous les fichiers de Minecraft et Forge sont intacts</p>
                 <button type="button" class="btn btn-primary btn-sm" id="btn-repair">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
                   Vérifier maintenant
@@ -137,7 +142,7 @@
 
               <div class="settings-card">
                 <h3>Discord Rich Presence</h3>
-                <p>Affichez votre activité Voltyx Launcher sur votre profil Discord.</p>
+                <p>Affichez votre activité Voltyx Launcher sur votre profil Discord</p>
                 <label class="settings-toggle">
                   <input type="checkbox" id="discord-rpc-toggle" checked>
                   <span class="settings-toggle__slider"></span>
@@ -149,12 +154,54 @@
               </div>
             </div>
 
+            <!-- Onglet Apparence -->
+            <div class="settings-panel" data-panel="appearance">
+              <h2>Apparence</h2>
+              <p class="settings-panel__subtitle">Personnalisez l'apparence du launcher</p>
+
+              <div class="settings-card">
+                <h3>Thème</h3>
+                <p>Choisissez le thème clair ou sombre</p>
+
+                <div class="theme-grid">
+                  <div class="theme-option" data-theme-choice="dark">
+                    <div class="theme-option__preview">
+                      <div class="theme-option__preview-bar"></div>
+                      <div class="theme-option__preview-content">
+                        <div class="theme-option__preview-dot"></div>
+                        <div class="theme-option__preview-dot"></div>
+                        <div class="theme-option__preview-dot"></div>
+                      </div>
+                    </div>
+                    <div class="theme-option__label">
+                      <span>Sombre</span>
+                      <span class="theme-option__check"></span>
+                    </div>
+                  </div>
+
+                  <div class="theme-option" data-theme-choice="light">
+                    <div class="theme-option__preview">
+                      <div class="theme-option__preview-bar"></div>
+                      <div class="theme-option__preview-content">
+                        <div class="theme-option__preview-dot"></div>
+                        <div class="theme-option__preview-dot"></div>
+                        <div class="theme-option__preview-dot"></div>
+                      </div>
+                    </div>
+                    <div class="theme-option__label">
+                      <span>Clair</span>
+                      <span class="theme-option__check"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Onglet Comptes -->
             <div class="settings-panel" data-panel="accounts">
               <h2>Comptes</h2>
-              <p class="settings-panel__subtitle">Connectez vos comptes Microsoft et Lumalia.</p>
+              <p class="settings-panel__subtitle">Connectez vos comptes Microsoft et Lumalia</p>
 
-              <!-- Compte Microsoft -->
               <div class="account-card" id="account-microsoft">
                 <div class="account-card__icon account-card__icon--ms">
                   <span>M</span>
@@ -168,7 +215,6 @@
                 </button>
               </div>
 
-              <!-- Compte Lumalia -->
               <div class="account-card" id="account-lumalia">
                 <div class="account-card__icon account-card__icon--lumalia">
                   <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
@@ -181,20 +227,19 @@
                   Ajouter
                 </button>
               </div>
-
             </div>
 
             <!-- Onglet Crashes -->
             <div class="settings-panel" data-panel="crashes">
               <h2>Crashes</h2>
-              <p class="settings-panel__subtitle">Historique des plantages récents.</p>
+              <p class="settings-panel__subtitle">Historique des plantages récents</p>
               <div class="settings-empty">Aucun crash enregistré.</div>
             </div>
 
             <!-- Onglet Contrats -->
             <div class="settings-panel" data-panel="contracts">
               <h2>Contrats</h2>
-              <p class="settings-panel__subtitle">Documents légaux et conditions d'utilisation.</p>
+              <p class="settings-panel__subtitle">Documents légaux et conditions d'utilisation</p>
               <div class="settings-empty">Aucun document.</div>
             </div>
 
@@ -203,7 +248,7 @@
         </div>
 
         <footer class="settings-page__footer">
-          <span>Version BETA 0.1.0</span>
+          <span>Version BETA 0.1.7</span>
         </footer>
 
       </div>

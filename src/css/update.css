@@ -1,6 +1,5 @@
 /* =========================================================
    VOLTYX LAUNCHER — update.css
-   Style de la popup de mise à jour
    ========================================================= */
 
 * {
@@ -9,16 +8,31 @@
   box-sizing: border-box;
 }
 
-:root {
-  --bg: #0b0d12;
-  --bg-2: #141823;
-  --text: #e8ecf5;
-  --text-2: #8b95a8;
-  --border: #212637;
-  --primary: #7c5cff;
-  --primary-hover: #8d70ff;
-  --success: #46d97a;
-  --error: #ff5c5c;
+:root,
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-2: #111111;
+  --text: #ffffff;
+  --text-2: #b0b0b0;
+  --border: #1f1f1f;
+  --primary: #4da3ff;
+  --primary-hover: #6db3ff;
+  --accent-contrast: #ffffff;
+  --success: #22c55e;
+  --error: #ef4444;
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-2: #f2f2f2;
+  --text: #0a0a0a;
+  --text-2: #4a4a4a;
+  --border: #e0e0e0;
+  --primary: #1976d2;
+  --primary-hover: #1565c0;
+  --accent-contrast: #ffffff;
+  --success: #16a34a;
+  --error: #dc2626;
 }
 
 html, body {
@@ -36,7 +50,7 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #0b0d12 0%, #0e1018 100%);
+  background: var(--bg);
 }
 
 /* === Barre de titre === */
@@ -109,8 +123,8 @@ html, body {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(124, 92, 255, 0.15), rgba(124, 92, 255, 0.05));
-  border: 1px solid rgba(124, 92, 255, 0.3);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,15 +137,13 @@ html, body {
 }
 
 .icon-circle.ready {
-  background: linear-gradient(135deg, rgba(70, 217, 122, 0.15), rgba(70, 217, 122, 0.05));
-  border-color: rgba(70, 217, 122, 0.3);
   color: var(--success);
+  border-color: var(--success);
 }
 
 .icon-circle.error {
-  background: linear-gradient(135deg, rgba(255, 92, 92, 0.15), rgba(255, 92, 92, 0.05));
-  border-color: rgba(255, 92, 92, 0.3);
   color: var(--error);
+  border-color: var(--error);
 }
 
 @keyframes pulse {
@@ -145,6 +157,7 @@ h1 {
   font-weight: 600;
   margin-bottom: 8px;
   letter-spacing: -0.3px;
+  color: var(--text);
 }
 
 .subtitle {
@@ -178,7 +191,7 @@ h1 {
 }
 
 .version-value {
-  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-family: monospace;
   font-weight: 600;
   color: var(--text);
 }
@@ -210,20 +223,13 @@ h1 {
 }
 
 .btn.primary {
-  background: linear-gradient(135deg, var(--primary) 0%, #6348e0 100%);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(124, 92, 255, 0.3);
+  background: var(--primary);
+  color: var(--accent-contrast);
   margin-bottom: 8px;
 }
 
 .btn.primary:hover {
-  background: linear-gradient(135deg, var(--primary-hover) 0%, #7055f0 100%);
-  box-shadow: 0 6px 20px rgba(124, 92, 255, 0.4);
-  transform: translateY(-1px);
-}
-
-.btn.primary:active {
-  transform: translateY(0);
+  background: var(--primary-hover);
 }
 
 .btn.ghost {
@@ -255,10 +261,9 @@ h1 {
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary) 0%, #a48cff 100%);
+  background: var(--primary);
   border-radius: 4px;
   transition: width 0.3s ease-out;
-  box-shadow: 0 0 12px rgba(124, 92, 255, 0.6);
 }
 
 .progress-text {
@@ -266,7 +271,7 @@ h1 {
   justify-content: space-between;
   font-size: 12px;
   color: var(--text-2);
-  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  font-family: monospace;
 }
 
 #progress-percent {

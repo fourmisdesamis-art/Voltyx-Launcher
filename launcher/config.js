@@ -1,6 +1,6 @@
 /* =========================================================
    VOLTYX LAUNCHER — config.js
-   Gestion de la config.json (RAM, Java, etc.)
+   Gestion de la config.json (RAM, Java, thème, etc.)
    ========================================================= */
 
 const fs = require("fs");
@@ -14,7 +14,10 @@ const DEFAULT_CONFIG = {
   javaVersion: "auto",
   installPath: PATHS.root,
   language: "fr",
+
+  // ⚠️ Thème (dark / light)
   theme: "dark",
+
   closeLauncherOnGameStart: false,
   minimizeLauncherOnGameStart: true,
   lastUsedAccount: null,
@@ -22,10 +25,7 @@ const DEFAULT_CONFIG = {
   lastLaunch: null,
   launchCount: 0,
 
-  // ⚠️ Onboarding
   onboardingDone: false,
-
-  // ⚠️ Discord RPC
   discordRPC: true,
 
   versions: {

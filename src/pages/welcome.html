@@ -7,11 +7,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/window-controls.css">
   <link rel="stylesheet" href="../css/welcome.css">
+
+  <script src="../js/theme.js"></script>
 </head>
 <body>
 
@@ -33,7 +35,6 @@
 
   <div class="welcome">
 
-    <!-- Blobs décoratifs -->
     <div class="welcome__blob welcome__blob--1"></div>
     <div class="welcome__blob welcome__blob--2"></div>
 
@@ -49,7 +50,7 @@
       </h1>
 
       <p class="welcome__subtitle">
-        Pour commencer, connectez-vous à votre compte Lumalia. Cela nous permet de vous identifier et de sauvegarder vos préférences.
+        Pour commencer, connectez-vous à votre compte Lumalia
       </p>
 
       <div class="welcome__actions">
@@ -86,7 +87,6 @@
         window.voltyx.nav.goto("index.html");
       });
 
-      // Écoute la connexion réussie → on passe à l'app
       window.voltyx.auth.onLumaliaUpdated(async function (data) {
         if (data && data.success) {
           await window.voltyx.onboarding.complete();

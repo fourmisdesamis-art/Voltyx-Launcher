@@ -51,6 +51,44 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   // ============================================================
+  // THÈME (Apparence)
+  // ============================================================
+  var themeOptions = document.querySelectorAll(".theme-option");
+
+  function markActiveTheme(theme) {
+    themeOptions.forEach(function (opt) {
+      opt.classList.toggle("active", opt.dataset.themeChoice === theme);
+    });
+  }
+
+  // Récupère le thème actuel
+  try {
+    var currentTheme = await window.voltyx.theme.get();
+    markActiveTheme(currentTheme);
+  } catch (e) {
+    console.warn("[Settings] Impossible de récupérer le thème :", e);
+    markActiveTheme("dark");
+  }
+
+  // Clic sur une option
+  themeOptions.forEach(function (opt) {
+    opt.addEventListener("click", async function () {
+      var newTheme = opt.dataset.themeChoice;
+      if (newTheme !== "dark" && newTheme !== "light") return;
+
+      markActiveTheme(newTheme);
+      await window.voltyx.theme.set(newTheme);
+    });
+  });
+
+  // Réagit aux changements externes (autres fenêtres)
+  if (window.voltyx.theme && window.voltyx.theme.onChanged) {
+    window.voltyx.theme.onChanged(function (newTheme) {
+      markActiveTheme(newTheme);
+    });
+  }
+
+  // ============================================================
   // BOUTON RÉPARER
   // ============================================================
   var repairBtn = document.getElementById("btn-repair");
@@ -80,12 +118,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             repairStatus.textContent = "⚠️ " + result.message;
             repairStatus.style.color = "var(--danger)";
           }
-
-          if (result.report && result.report.failed && result.report.failed.length > 0) {
-            console.warn("[Repair] Fichiers en échec :", result.report.failed);
-          }
         }
-
       } catch (err) {
         console.error("[Settings] Erreur repair :", err);
         if (repairStatus) {
@@ -99,7 +132,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
     });
 
-    // Vérification rapide au chargement de la page
     (async function quickCheck() {
       try {
         var check = await window.voltyx.install.quickCheck();
@@ -163,7 +195,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         await new Promise(r => setTimeout(r, 800));
         await refreshDiscordStatus();
-
       } catch (err) {
         console.error("[Settings] Discord toggle :", err);
         discordStatus.textContent = "Erreur";

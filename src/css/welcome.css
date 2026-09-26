@@ -1,6 +1,5 @@
 /* =========================================================
    VOLTYX LAUNCHER — welcome.css
-   Écran de bienvenue (onboarding)
    ========================================================= */
 
 .welcome {
@@ -14,29 +13,9 @@
   background: var(--bg);
 }
 
-/* Blobs */
+/* Blobs supprimés */
 .welcome__blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  pointer-events: none;
-  z-index: 0;
-}
-.welcome__blob--1 {
-  width: 500px;
-  height: 500px;
-  background: #7c5cff;
-  opacity: 0.2;
-  top: -200px;
-  left: -150px;
-}
-.welcome__blob--2 {
-  width: 400px;
-  height: 400px;
-  background: #8ad4ff;
-  opacity: 0.15;
-  bottom: -150px;
-  right: -100px;
+  display: none;
 }
 
 .welcome__inner {
@@ -60,7 +39,7 @@
 }
 
 .welcome__title {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.1;
@@ -69,10 +48,8 @@
   color: var(--text);
 }
 .welcome__title-accent {
-  background: linear-gradient(135deg, #7c5cff, #b39bff 60%, #8ad4ff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text);
+  opacity: 0.6;
 }
 
 .welcome__subtitle {
@@ -95,7 +72,7 @@
   color: var(--text-muted);
 }
 .welcome__note a {
-  color: var(--accent);
+  color: var(--text);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

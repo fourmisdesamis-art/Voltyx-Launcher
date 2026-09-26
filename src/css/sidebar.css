@@ -22,7 +22,6 @@
   gap: 0.5rem;
 }
 
-/* ---------- Logo Voltyx (marque, fixe) ---------- */
 .sidebar__brand {
   width: 44px;
   height: 44px;
@@ -38,7 +37,6 @@
   object-fit: contain;
 }
 
-/* ---------- Séparateur ---------- */
 .sidebar__separator {
   width: 32px;
   height: 1px;
@@ -46,7 +44,6 @@
   margin: 0.25rem 0;
 }
 
-/* ---------- Serveurs (logos cliquables) ---------- */
 .sidebar__servers {
   display: flex;
   flex-direction: column;
@@ -78,12 +75,13 @@
 .sidebar__server:hover {
   background: var(--bg-hover);
 }
+
+/* ⚠️ Serveur actif : bordure BLEUE */
 .sidebar__server.active {
-  background: var(--accent-soft);
-  border-color: var(--accent);
+  background: var(--blue-soft);
+  border-color: var(--blue);
 }
 
-/* ---------- Boutons génériques (Paramètres, etc.) ---------- */
 .sidebar__item {
   width: 44px;
   height: 44px;
@@ -91,7 +89,7 @@
   place-items: center;
   border-radius: var(--radius-md);
   color: var(--text-muted);
-  transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast);
+  transition: background var(--t-fast), color var(--t-fast);
   flex-shrink: 0;
   padding: 0;
 }
@@ -99,10 +97,11 @@
   background: var(--bg-hover);
   color: var(--text);
 }
+
+/* ⚠️ Item actif (paramètres) : fond BLEU */
 .sidebar__item.active {
-  background: var(--accent);
-  color: #fff;
-  box-shadow: 0 4px 16px rgba(124, 92, 255, 0.4);
+  background: var(--blue);
+  color: var(--blue-contrast);
 }
 .sidebar__item svg {
   width: 20px !important;
@@ -111,7 +110,7 @@
   max-height: 20px !important;
 }
 
-/* ---------- Avatar utilisateur ---------- */
+/* Avatar utilisateur */
 .sidebar__user {
   position: relative;
   width: 40px !important;
@@ -124,7 +123,7 @@
   padding: 0;
 }
 .sidebar__user:hover {
-  border-color: var(--accent);
+  border-color: var(--blue);
 }
 .sidebar__user img {
   width: 100% !important;
@@ -144,27 +143,24 @@
   border: 2px solid var(--bg);
 }
 
-/* ---------- Avatar avec initiale (utilisateur connecté) ---------- */
+/* ⚠️ Avatar avec initiale : fond BLEU */
 .sidebar__user-avatar {
   width: 100%;
   height: 100%;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, var(--accent), #b39bff);
-  color: #fff;
-  font-family: "Space Grotesk", sans-serif;
+  background: var(--blue);
+  color: var(--blue-contrast);
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1rem;
   border-radius: 50%;
 }
 
-/* Pastille verte seulement si connecté */
 .sidebar__user:not(.sidebar__user--connected) .sidebar__user-status {
   background: var(--text-muted);
 }
 
-/* Halo quand connecté */
 .sidebar__user--connected {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 2px var(--accent-soft);
+  border-color: var(--blue);
 }

@@ -28,6 +28,13 @@ contextBridge.exposeInMainWorld("voltyx", {
     getKey: (key) => ipcRenderer.invoke("config:getKey", key)
   },
 
+  // ⚠️ Thème (dark / light)
+  theme: {
+    get: () => ipcRenderer.invoke("theme:get"),
+    set: (theme) => ipcRenderer.invoke("theme:set", theme),
+    onChanged: (cb) => ipcRenderer.on("theme:changed", (e, theme) => cb(theme))
+  },
+
   onboarding: {
     isDone: () => ipcRenderer.invoke("onboarding:isDone"),
     complete: () => ipcRenderer.invoke("onboarding:complete")

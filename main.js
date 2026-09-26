@@ -50,7 +50,7 @@ function createWindow() {
     minWidth: 1000,
     minHeight: 640,
     frame: false,
-    backgroundColor: "#0b0d12",
+    backgroundColor: "#000000",
     show: false,
     icon: getAppIconPath(),
     webPreferences: {
@@ -92,7 +92,7 @@ function openLumaliaLogin() {
     height: 600,
     resizable: false,
     frame: false,
-    backgroundColor: "#0b0d12",
+    backgroundColor: "#000000",
     parent: mainWindow,
     modal: false,
     show: false,
@@ -158,6 +158,33 @@ ipcMain.handle("config:get", () => config.load());
 ipcMain.handle("config:update", (e, patch) => config.update(patch));
 ipcMain.handle("config:reset", () => config.reset());
 ipcMain.handle("config:getKey", (e, key) => config.get(key));
+
+// ============================================================
+// IPC : Thème
+// ============================================================
+ipcMain.handle("theme:get", () => {
+  const cfg = config.load();
+  return cfg.theme || "dark";
+});
+
+ipcMain.handle("theme:set", (e, theme) => {
+  if (theme !== "dark" && theme !== "light") {
+    return { success: false, error: "Thème invalide" };
+  }
+  config.update({ theme });
+
+  // Change la couleur de fond des fenêtres (évite le flash blanc)
+  const bg = theme === "dark" ? "#000000" : "#ffffff";
+  BrowserWindow.getAllWindows().forEach((win) => {
+    if (!win.isDestroyed()) {
+      win.setBackgroundColor(bg);
+      // Notifie la fenêtre du changement
+      win.webContents.send("theme:changed", theme);
+    }
+  });
+
+  return { success: true, theme };
+});
 
 // ============================================================
 // IPC : Onboarding
@@ -406,6 +433,12 @@ app.whenReady().then(async () => {
   await lumaliaAuth.restoreSession();
 
   const cfg = config.load();
+
+  // Applique la couleur de fond selon le thème dès le départ
+  if (cfg.theme === "light") {
+    app.commandLine.appendSwitch("force-color-profile", "srgb");
+  }
+
   if (cfg.discordRPC !== false) {
     discordRPC.connect();
   } else {

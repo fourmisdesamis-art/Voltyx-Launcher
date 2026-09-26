@@ -13,7 +13,7 @@
   margin-bottom: 2rem;
 }
 .settings-page__header h1 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -25,7 +25,6 @@
   color: var(--text-soft);
 }
 
-/* ---------- Layout 2 colonnes ---------- */
 .settings-layout {
   display: grid;
   grid-template-columns: 220px 1fr;
@@ -34,7 +33,6 @@
   align-items: start;
 }
 
-/* ---------- Sidebar interne ---------- */
 .settings-nav {
   display: flex;
   flex-direction: column;
@@ -57,10 +55,12 @@
   background: var(--bg-hover);
   color: var(--text);
 }
+
+/* ⚠️ Onglet actif : bordure gauche BLEUE + fond bleu léger */
 .settings-nav__item.active {
-  background: var(--bg-elevated);
+  background: var(--blue-soft);
   color: var(--text);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--blue);
   padding-left: calc(0.9rem - 3px);
 }
 .settings-nav__item svg {
@@ -69,7 +69,6 @@
   flex-shrink: 0;
 }
 
-/* ---------- Contenu ---------- */
 .settings-content {
   min-width: 0;
 }
@@ -82,7 +81,7 @@
   display: block;
 }
 .settings-panel h2 {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text);
@@ -94,7 +93,6 @@
   margin-bottom: 1.75rem;
 }
 
-/* ---------- Cartes de paramètres ---------- */
 .settings-card {
   padding: 1.5rem;
   border: 1px solid var(--border);
@@ -103,7 +101,7 @@
   margin-bottom: 1rem;
 }
 .settings-card h3 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: var(--text);
@@ -115,7 +113,7 @@
   margin-bottom: 1rem;
 }
 
-/* Slider RAM */
+/* ⚠️ Slider RAM avec curseur BLEU */
 .settings-card input[type="range"] {
   width: 100%;
   appearance: none;
@@ -132,16 +130,19 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--blue);
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(124, 92, 255, 0.5);
+  border: 2px solid var(--bg);
+}
+.settings-card input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--blue-hover);
 }
 
 .settings-card__value {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--blue);
 }
 
 .settings-card__path {
@@ -149,7 +150,7 @@
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  font-family: "Geist Mono", monospace;
+  font-family: monospace;
   font-size: 0.8rem;
   color: var(--text-soft);
   overflow-x: auto;
@@ -159,7 +160,7 @@
   white-space: nowrap;
 }
 
-/* ---------- Cartes de compte ---------- */
+/* Cartes de compte */
 .account-card {
   display: flex;
   align-items: center;
@@ -182,16 +183,17 @@
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 1.25rem;
   color: #fff;
+  background: var(--bg-hover);
 }
 .account-card__icon--ms {
-  background: linear-gradient(135deg, #0078d4, #00a4ef);
+  background: #0078d4;
 }
 .account-card__icon--lumalia {
-  background: linear-gradient(135deg, #7c5cff, #b39bff);
+  background: var(--bg-hover);
 }
 .account-card__icon--lumalia img {
   width: 32px;
@@ -204,7 +206,7 @@
   min-width: 0;
 }
 .account-card__body h3 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.98rem;
   font-weight: 600;
   color: var(--text);
@@ -215,6 +217,7 @@
   color: var(--text-muted);
 }
 
+/* ⚠️ Bouton account : hover en BLEU */
 .account-card__btn {
   padding: 0.6rem 1.5rem;
   border-radius: var(--radius-full);
@@ -226,8 +229,8 @@
   flex-shrink: 0;
 }
 .account-card__btn:hover {
-  background: var(--accent);
-  color: #fff;
+  background: var(--blue);
+  color: var(--blue-contrast);
 }
 .account-card__btn--connected {
   background: rgba(34, 197, 94, 0.15);
@@ -238,14 +241,12 @@
   color: var(--danger);
 }
 
-/* Compte connecté (state) */
 .account-card--connected .account-card__body h3::after {
   content: " ✓";
   color: var(--success);
   font-weight: 700;
 }
 
-/* ---------- Empty state ---------- */
 .settings-empty {
   padding: 3rem 1.5rem;
   text-align: center;
@@ -255,7 +256,6 @@
   border-radius: var(--radius-lg);
 }
 
-/* ---------- Footer ---------- */
 .settings-page__footer {
   margin-top: 2rem;
   padding-top: 1.5rem;
@@ -266,7 +266,7 @@
 .settings-page__footer span {
   font-size: 0.8rem;
   color: var(--text-muted);
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 @keyframes fadeIn {
@@ -274,7 +274,7 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Toggle Discord RPC ---------- */
+/* Toggle */
 .settings-toggle {
   display: flex;
   align-items: center;
@@ -307,11 +307,11 @@
   border-radius: 50%;
   background: #fff;
   transition: transform var(--t-fast);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+/* ⚠️ Toggle activé : BLEU */
 .settings-toggle input:checked + .settings-toggle__slider {
-  background: var(--accent);
+  background: var(--blue);
 }
 
 .settings-toggle input:checked + .settings-toggle__slider::after {
@@ -332,4 +332,121 @@
 }
 #repair-status {
   font-family: "Inter", sans-serif;
+}
+
+/* ---------- Choix du thème (Apparence) ---------- */
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 480px;
+}
+
+.theme-option {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+
+.theme-option:hover {
+  border-color: var(--border-strong);
+}
+
+/* ⚠️ Thème actif : bordure BLEUE */
+.theme-option.active {
+  border-color: var(--blue);
+}
+
+.theme-option__preview {
+  width: 100%;
+  height: 80px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+}
+
+.theme-option[data-theme="dark"] .theme-option__preview {
+  background: #000;
+}
+.theme-option[data-theme="dark"] .theme-option__preview-bar {
+  background: #1a1a1a;
+  height: 12px;
+  border-bottom: 1px solid #2a2a2a;
+}
+.theme-option[data-theme="dark"] .theme-option__preview-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.theme-option[data-theme="dark"] .theme-option__preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.theme-option[data-theme="light"] .theme-option__preview {
+  background: #fff;
+}
+.theme-option[data-theme="light"] .theme-option__preview-bar {
+  background: #f0f0f0;
+  height: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+.theme-option[data-theme="light"] .theme-option__preview-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.theme-option[data-theme="light"] .theme-option__preview-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #000;
+}
+
+.theme-option__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.theme-option__check {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  display: grid;
+  place-items: center;
+  transition: all var(--t-fast);
+}
+
+/* ⚠️ Coche du thème actif : BLEUE */
+.theme-option.active .theme-option__check {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.theme-option.active .theme-option__check::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--blue-contrast);
 }

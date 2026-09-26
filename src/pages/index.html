@@ -7,12 +7,14 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Poppins:wght@500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/sidebar.css">
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="../css/window-controls.css">
+
+  <script src="../js/theme.js"></script>
 </head>
 <body>
 
@@ -40,15 +42,12 @@
 
       <div class="sidebar__top">
 
-        <!-- Logo Voltyx (toujours en haut, non cliquable) -->
         <div class="sidebar__brand" aria-label="Voltyx">
           <img src="../../assets/images/logo-voltyx.png" alt="Voltyx">
         </div>
 
-        <!-- Séparateur -->
         <div class="sidebar__separator"></div>
 
-        <!-- Serveurs -->
         <nav class="sidebar__servers">
           <button type="button" class="sidebar__server active" data-nav="index.html" aria-label="Lumalia" title="Lumalia">
             <img src="../../assets/images/logo-lumalia.png" alt="Lumalia">
@@ -77,8 +76,11 @@
       <div class="content__page active" data-page="lumalia">
         <div class="home">
 
-          <div class="home__blob home__blob--1"></div>
-          <div class="home__blob home__blob--2"></div>
+          <!-- Image de fond Lumalia -->
+          <div class="home__bg"></div>
+
+          <!-- Voile sombre pour la lisibilité -->
+          <div class="home__overlay"></div>
 
           <header class="home__header">
             <div class="home__brand">
@@ -93,13 +95,11 @@
 
           <div class="home__main">
             <div class="home__hero">
-              <h1 class="home__title">
-                Bienvenue sur<br>
-                <span class="home__title-accent">Lumalia</span>
-              </h1>
+
+              <h1 class="home__title home__title--lumalia">Lumalia</h1>
 
               <p class="home__subtitle">
-                Forge 1.16.5 · Rejoignez l'aventure et explorez nos univers Minecraft.
+                Forge 1.16.5 · Rejoignez l'aventure en jouant sur nos serveurs !
               </p>
 
               <button type="button" class="home__play" id="play-btn">
@@ -111,7 +111,6 @@
                 <span id="launcher-status">Prêt à lancer</span>
               </div>
 
-              <!-- Barre de progression améliorée -->
               <div class="home__progress" id="progress-container" style="display:none;">
                 <div class="home__progress-top">
                   <div class="home__progress-label" id="progress-label">Préparation…</div>
@@ -132,7 +131,7 @@
           </div>
 
           <footer class="home__footer">
-            <span class="home__version">Version BETA 0.1.0</span>
+            <span class="home__version">BETA 0.1.7</span>
           </footer>
 
         </div>

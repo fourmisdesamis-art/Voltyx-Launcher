@@ -10,48 +10,103 @@
   padding: 0;
 }
 
+/* ============================================================
+   THÈME SOMBRE (par défaut)
+   ============================================================ */
+:root,
+[data-theme="dark"] {
+  --bg: #000000;
+  --bg-soft: #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-hover: #1a1a1a;
+
+  --text: #ffffff;
+  --text-soft: #b0b0b0;
+  --text-muted: #6a6a6a;
+
+  --border: #1f1f1f;
+  --border-strong: #2a2a2a;
+
+  /* Accent neutre (bordures, séparateurs) */
+  --accent: #ffffff;
+  --accent-hover: #e0e0e0;
+  --accent-soft: rgba(255, 255, 255, 0.1);
+  --accent-contrast: #000000;
+
+  /* ⚠️ NOUVEAU : Couleur des boutons interactifs (bleu clair) */
+  --blue: #4da3ff;
+  --blue-hover: #6db3ff;
+  --blue-soft: rgba(77, 163, 255, 0.15);
+  --blue-contrast: #ffffff;
+
+  --success: #22c55e;
+  --danger: #ef4444;
+
+  --shadow-color: rgba(0, 0, 0, 0.6);
+  --titlebar-bg: #000000;
+  --scrollbar-thumb: #2a2a2a;
+  --scrollbar-thumb-hover: #3a3a3a;
+}
+
+/* ============================================================
+   THÈME CLAIR
+   ============================================================ */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-soft: #f7f7f7;
+  --bg-elevated: #f2f2f2;
+  --bg-hover: #e8e8e8;
+
+  --text: #0a0a0a;
+  --text-soft: #4a4a4a;
+  --text-muted: #8a8a8a;
+
+  --border: #e0e0e0;
+  --border-strong: #c8c8c8;
+
+  --accent: #000000;
+  --accent-hover: #1a1a1a;
+  --accent-soft: rgba(0, 0, 0, 0.08);
+  --accent-contrast: #ffffff;
+
+  /* ⚠️ NOUVEAU : Bleu plus soutenu pour le thème clair */
+  --blue: #1976d2;
+  --blue-hover: #1565c0;
+  --blue-soft: rgba(25, 118, 210, 0.12);
+  --blue-contrast: #ffffff;
+
+  --success: #16a34a;
+  --danger: #dc2626;
+
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --titlebar-bg: #ffffff;
+  --scrollbar-thumb: #c8c8c8;
+  --scrollbar-thumb-hover: #a8a8a8;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
 html, body {
   height: 100%;
   overflow: hidden;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   user-select: none;
+  background: var(--bg);
+  color: var(--text);
 }
 
-:root {
-  --bg: #0b0d12;
-  --bg-soft: #12141b;
-  --bg-elevated: #161922;
-  --bg-hover: #1c2030;
-
-  --text: #f4f5f8;
-  --text-soft: #a3a9bd;
-  --text-muted: #6f7488;
-
-  --border: #1f2230;
-  --border-strong: #2b2f40;
-
-  --accent: #7c5cff;
-  --accent-hover: #8f73ff;
-  --accent-soft: rgba(124, 92, 255, 0.15);
-
-  --success: #22c55e;
-  --danger: #ef4444;
-
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-full: 999px;
-
-  --t-fast: 0.15s ease;
-  --t-base: 0.25s ease;
-
-  --sidebar-width: 68px;
-  --titlebar-height: 32px;
+body,
+.app,
+.sidebar,
+.content,
+.titlebar,
+.settings-card,
+.account-card {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -78,7 +133,6 @@ svg {
   display: block;
 }
 
-/* Scrollbar personnalisée */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -87,34 +141,49 @@ svg {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-strong);
+  background: var(--scrollbar-thumb);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: var(--scrollbar-thumb-hover);
 }
 
 /* ---------- Layout global ---------- */
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
 .app {
   display: flex;
   height: calc(100vh - var(--titlebar-height));
   margin-top: var(--titlebar-height);
 }
 
+/* Contenu : scroll autorisé par défaut */
 .content {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
+  height: 100%;
 }
 
 .content__page {
   display: none;
   min-height: 100%;
+  width: 100%;
   animation: fadeIn 0.25s ease;
 }
 .content__page.active {
   display: block;
+}
+
+/* ⚠️ La page d'accueil ne scrolle PAS (image plein écran) */
+.content__page[data-page="lumalia"] {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 @keyframes fadeIn {
@@ -122,11 +191,21 @@ svg {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* =========================================================
-   SÉCURITÉ : Empêche les images de déborder
-   ========================================================= */
+/* ---------- Layout vars ---------- */
+:root {
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
 
-/* Les images dans la sidebar ne doivent JAMAIS dépasser */
+  --t-fast: 0.15s ease;
+  --t-base: 0.25s ease;
+
+  --sidebar-width: 68px;
+  --titlebar-height: 32px;
+}
+
+/* ---------- Sécurité images ---------- */
 .sidebar img {
   max-width: 32px;
   max-height: 32px;
@@ -137,8 +216,50 @@ svg {
   max-height: 40px;
 }
 
-/* Le logo dans la titlebar (si tu en ajoutes) */
 .titlebar img {
   max-width: 20px;
   max-height: 20px;
+}
+
+/* ---------- Boutons génériques ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--t-fast);
+}
+
+/* ⚠️ Bleu pour les boutons principaux */
+.btn-primary {
+  background: var(--blue);
+  color: var(--blue-contrast);
+  border-color: var(--blue);
+}
+.btn-primary:hover {
+  background: var(--blue-hover);
+  border-color: var(--blue-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-soft);
+  border-color: var(--border);
+}
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
 }

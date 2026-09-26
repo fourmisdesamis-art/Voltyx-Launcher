@@ -1,6 +1,5 @@
 /* =========================================================
    VOLTYX LAUNCHER — window-controls.css
-   Barre de titre personnalisée
    ========================================================= */
 
 .titlebar {
@@ -11,7 +10,7 @@
   height: var(--titlebar-height);
   display: flex;
   align-items: center;
-  background: var(--bg);
+  background: var(--titlebar-bg);
   border-bottom: 1px solid var(--border);
   z-index: 9999;
 }
