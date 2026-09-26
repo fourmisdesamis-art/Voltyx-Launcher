@@ -17,6 +17,7 @@ const microsoftAuth = require("./launcher/auth/microsoft");
 const lumaliaAuth = require("./launcher/auth/lumalia");
 const discordRPC = require("./launcher/discord-rpc");
 const updater = require("./launcher/update-manager");
+const firebase = require("./launcher/firebase");
 
 const isDev = process.argv.includes("--dev");
 
@@ -173,12 +174,10 @@ ipcMain.handle("theme:set", (e, theme) => {
   }
   config.update({ theme });
 
-  // Change la couleur de fond des fenêtres (évite le flash blanc)
   const bg = theme === "dark" ? "#000000" : "#ffffff";
   BrowserWindow.getAllWindows().forEach((win) => {
     if (!win.isDestroyed()) {
       win.setBackgroundColor(bg);
-      // Notifie la fenêtre du changement
       win.webContents.send("theme:changed", theme);
     }
   });
@@ -400,6 +399,35 @@ ipcMain.handle("discord:isReady", () => {
 });
 
 // ============================================================
+// IPC : News (Firebase Firestore)
+// ============================================================
+ipcMain.handle("news:list", async () => {
+  try {
+    const news = await firebase.getNews(20);
+    return { success: true, news };
+  } catch (err) {
+    console.error("[Main] Erreur news:list :", err);
+    return { success: false, error: err.message, news: [] };
+  }
+});
+
+ipcMain.handle("news:get", async (e, id) => {
+  try {
+    const news = await firebase.getNewsById(id);
+    return { success: true, news };
+  } catch (err) {
+    console.error("[Main] Erreur news:get :", err);
+    return { success: false, error: err.message, news: null };
+  }
+});
+
+ipcMain.on("news:openExternal", (e, url) => {
+  if (typeof url === "string" && url.startsWith("https://")) {
+    shell.openExternal(url);
+  }
+});
+
+// ============================================================
 // IPC : Auto-Updater
 // ============================================================
 ipcMain.handle("updater:check", async () => {
@@ -434,15 +462,17 @@ app.whenReady().then(async () => {
 
   const cfg = config.load();
 
-  // Applique la couleur de fond selon le thème dès le départ
-  if (cfg.theme === "light") {
-    app.commandLine.appendSwitch("force-color-profile", "srgb");
-  }
-
   if (cfg.discordRPC !== false) {
     discordRPC.connect();
   } else {
     console.log("[Discord] Désactivé dans les paramètres");
+  }
+
+  // Init Firebase (ne bloque pas si ça plante)
+  try {
+    firebase.init();
+  } catch (err) {
+    console.error("[Main] Erreur init Firebase :", err);
   }
 
   updater.init();

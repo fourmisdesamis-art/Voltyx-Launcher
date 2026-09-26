@@ -7,9 +7,11 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Thème sombre : textes CLAIRS */
+/* Thème sombre */
 [data-theme="dark"] .home {
   --text: #ffffff;
   --text-soft: #f0f0f0;
@@ -17,7 +19,7 @@
   --border: rgba(255, 255, 255, 0.2);
 }
 
-/* Thème clair : textes NOIRS */
+/* Thème clair */
 [data-theme="light"] .home {
   --text: #000000;
   --text-soft: #000000;
@@ -25,7 +27,7 @@
   --border: rgba(0, 0, 0, 0.25);
 }
 
-/* ---------- Image de fond (couvre TOUTE l'interface) ---------- */
+/* ---------- Image de fond ---------- */
 .home__bg {
   position: absolute;
   inset: 0;
@@ -34,9 +36,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  pointer-events: none;
 }
 
-/* ---------- Voile adaptatif (noir en dark, blanc en light) ---------- */
+/* ---------- Voile ---------- */
 .home__overlay {
   position: absolute;
   inset: 0;
@@ -46,25 +49,32 @@
 }
 
 [data-theme="dark"] .home__overlay {
-  background: rgba(0, 0, 0, 0.45);
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.55) 50%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
 }
 
 [data-theme="light"] .home__overlay {
-  background: rgba(255, 255, 255, 0.55);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 255, 255, 0.65) 50%,
+    rgba(255, 255, 255, 0.9) 100%
+  );
 }
 
-/* ---------- Header en haut ---------- */
+/* ---------- Header ---------- */
 .home__header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 3rem 1.5rem;
-  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 .home__brand {
@@ -100,19 +110,24 @@
   backdrop-filter: blur(8px);
 }
 
-/* En thème sombre, la pastille de statut devient sombre */
 [data-theme="dark"] .home__header-status {
   background: rgba(0, 0, 0, 0.55);
   color: #ffffff;
 }
 
-/* ---------- Zone centrale (parfaitement centrée) ---------- */
+/* ---------- Hero (⚠️ hauteur RÉDUITE à 50vh) ---------- */
+.home__hero-zone {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .home__main {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
   width: 100%;
   max-width: 640px;
   padding: 0 2rem;
@@ -125,14 +140,14 @@
   align-items: center;
 }
 
-/* ---------- Titre Lumalia (dégradé) ---------- */
+/* ---------- Titre ---------- */
 .home__title {
   font-family: "Inter", sans-serif;
-  font-size: 5.5rem;
+  font-size: 4rem;
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.04em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .home__title--lumalia {
@@ -152,9 +167,9 @@
 }
 
 .home__subtitle {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--text);
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
   font-weight: 500;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
 }
@@ -170,12 +185,12 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 1rem 3rem;
+  padding: 0.85rem 2.5rem;
   background: var(--blue);
   color: #ffffff;
   border-radius: var(--radius-full);
   font-family: "Inter", sans-serif;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   transition: all var(--t-base);
   box-shadow: 0 8px 24px rgba(77, 163, 255, 0.4);
@@ -199,8 +214,8 @@
 }
 
 .home__launcher-status {
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-weight: 500;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -210,52 +225,12 @@
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
-/* ---------- Footer collé en bas ---------- */
-.home__footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  display: flex;
-  justify-content: flex-end;
-  padding: 1.5rem 3rem 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.home__version {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-family: "Inter", sans-serif;
-  letter-spacing: 0.02em;
-  font-weight: 500;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-[data-theme="light"] .home__version {
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
-}
-
-/* ---------- Dot pulsant ---------- */
-.home__status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--success);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.5; transform: scale(1.2); }
-}
-
 /* ---------- Barre de progression ---------- */
 .home__progress {
-  margin-top: 2rem;
-  max-width: 480px;
+  margin-top: 1.25rem;
+  max-width: 420px;
   width: 100%;
-  padding: 1.25rem 1.5rem;
+  padding: 1rem 1.25rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.9);
@@ -270,12 +245,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem;
   gap: 1rem;
 }
 
 .home__progress-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text);
   text-align: left;
   overflow: hidden;
@@ -287,7 +262,7 @@
 
 .home__progress-percent {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--blue);
   flex-shrink: 0;
@@ -295,9 +270,9 @@
 
 .home__progress-bar {
   width: 100%;
-  height: 8px;
+  height: 6px;
   background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
+  border-radius: 3px;
   overflow: hidden;
   position: relative;
 }
@@ -310,7 +285,7 @@
   height: 100%;
   width: 0%;
   background: var(--blue);
-  border-radius: 4px;
+  border-radius: 3px;
   transition: width 0.3s ease;
 }
 
@@ -318,9 +293,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.75rem;
+  margin-top: 0.6rem;
   gap: 1rem;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
 }
 
@@ -338,4 +313,53 @@
   font-family: "Inter", sans-serif;
   font-weight: 500;
   color: var(--text);
+}
+
+/* ---------- Section News (prend le reste de l'espace) ---------- */
+.home__news-section {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  flex: 1;
+  padding: 0 3rem 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.home__news-title {
+  font-family: "Inter", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .home__news-title {
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Footer ---------- */
+.home__footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 3rem 1rem;
+  flex-shrink: 0;
+}
+
+.home__version {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-family: "Inter", sans-serif;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .home__version {
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
 }

@@ -1,6 +1,6 @@
 {
   "name": "voltyx-launcher",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Launcher officiel de Voltyx Studios",
   "main": "main.js",
   "author": "Voltyx Studios",
@@ -25,6 +25,7 @@
     "adm-zip": "^0.5.16",
     "discord-rpc": "^4.0.1",
     "electron-updater": "^6.3.9",
+    "firebase": "^10.14.1",
     "msmc": "^5.0.5"
   },
   "build": {
@@ -51,7 +52,9 @@
       {
         "from": "assets/images",
         "to": "images",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       }
     ],
     "extraMetadata": {
@@ -61,11 +64,14 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "icon": "assets/images/logo.ico",
-      "artifactName": "${productName}-Setup-${version}.${ext}"
+      "artifactName": "${productName}-Setup-${version}.${ext}",
+      "signAndEditExecutable": false
     },
     "nsis": {
       "oneClick": false,

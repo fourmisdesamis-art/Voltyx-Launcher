@@ -28,7 +28,6 @@ contextBridge.exposeInMainWorld("voltyx", {
     getKey: (key) => ipcRenderer.invoke("config:getKey", key)
   },
 
-  // ⚠️ Thème (dark / light)
   theme: {
     get: () => ipcRenderer.invoke("theme:get"),
     set: (theme) => ipcRenderer.invoke("theme:set", theme),
@@ -89,5 +88,11 @@ contextBridge.exposeInMainWorld("voltyx", {
     onDownloadProgress: (cb) => ipcRenderer.on("updater:downloadProgress", (e, d) => cb(d)),
     onUpdateDownloaded: (cb) => ipcRenderer.on("updater:updateDownloaded", (e, d) => cb(d)),
     onError: (cb) => ipcRenderer.on("updater:error", (e, d) => cb(d))
+  },
+
+  news: {
+    list: () => ipcRenderer.invoke("news:list"),
+    get: (id) => ipcRenderer.invoke("news:get", id),
+    openExternal: (url) => ipcRenderer.send("news:openExternal", url)
   }
 });
