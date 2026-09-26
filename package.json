@@ -1,7 +1,7 @@
 {
   "name": "voltyx-launcher",
-  "version": "0.1.0",
-  "description": "Launcher officiel de Voltyx",
+  "version": "0.1.6",
+  "description": "Launcher officiel de Voltyx Studios",
   "main": "main.js",
   "author": "Voltyx Studios",
   "license": "MIT",
@@ -43,6 +43,17 @@
       "!**/*.md",
       "!**/test-*.js"
     ],
+    "extraResources": [
+      {
+        "from": "assets/images/logo.ico",
+        "to": "logo.ico"
+      },
+      {
+        "from": "assets/images",
+        "to": "images",
+        "filter": ["**/*"]
+      }
+    ],
     "extraMetadata": {
       "main": "main.js"
     },
@@ -54,8 +65,7 @@
         }
       ],
       "icon": "assets/images/logo.ico",
-      "artifactName": "${productName}-Setup-${version}.${ext}",
-      "signAndEditExecutable": false
+      "artifactName": "${productName}-Setup-${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,

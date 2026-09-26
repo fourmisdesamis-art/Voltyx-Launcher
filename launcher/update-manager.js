@@ -1,26 +1,35 @@
 /* =========================================================
    VOLTYX LAUNCHER — update-manager.js
-   Gestion des mises à jour automatiques via electron-updater
    ========================================================= */
 
 const { autoUpdater } = require("electron-updater");
 const { app, BrowserWindow } = require("electron");
 const path = require("path");
+const fs = require("fs");
 
-// === Configuration ===
-autoUpdater.autoDownload = false;          // On demande confirmation avant de télécharger
-autoUpdater.autoInstallOnAppQuit = true;   // Installer au prochain quit si l'utilisateur ferme
-autoUpdater.allowPrerelease = false;        // Ignorer les pre-releases
-autoUpdater.allowDowngrade = false;         // Pas de downgrade
+autoUpdater.autoDownload = false;
+autoUpdater.autoInstallOnAppQuit = true;
+autoUpdater.allowPrerelease = false;
+autoUpdater.allowDowngrade = false;
 
-// === État interne ===
-let updateWindow = null;       // Fenêtre popup de mise à jour
-let updateInfo = null;         // Infos de la MAJ dispo
-let mainWindowRef = null;      // Référence vers la fenêtre principale
+let updateWindow = null;
+let updateInfo = null;
+let mainWindowRef = null;
 
-/**
- * Crée (ou focus) la popup de mise à jour
- */
+function getIconPath() {
+  const candidates = [];
+  if (app.isPackaged) {
+    candidates.push(path.join(process.resourcesPath, "logo.ico"));
+    candidates.push(path.join(process.resourcesPath, "images", "logo.ico"));
+  } else {
+    candidates.push(path.join(__dirname, "..", "assets", "images", "logo.ico"));
+  }
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return undefined;
+}
+
 function openUpdateWindow() {
   if (updateWindow && !updateWindow.isDestroyed()) {
     updateWindow.focus();
@@ -36,6 +45,7 @@ function openUpdateWindow() {
     parent: mainWindowRef || undefined,
     modal: false,
     show: false,
+    icon: getIconPath(),
     webPreferences: {
       preload: path.join(__dirname, "..", "preload.js"),
       contextIsolation: true,
@@ -48,7 +58,6 @@ function openUpdateWindow() {
 
   updateWindow.once("ready-to-show", () => {
     updateWindow.show();
-    // Envoie les infos de la MAJ dès que la fenêtre est prête
     if (updateInfo) {
       updateWindow.webContents.send("updater:updateAvailable", updateInfo);
     }
@@ -59,9 +68,6 @@ function openUpdateWindow() {
   });
 }
 
-/**
- * Envoie un événement à toutes les fenêtres ouvertes
- */
 function broadcast(channel, data) {
   BrowserWindow.getAllWindows().forEach((win) => {
     if (!win.isDestroyed()) {
@@ -70,9 +76,6 @@ function broadcast(channel, data) {
   });
 }
 
-/**
- * Configure les listeners de l'autoUpdater
- */
 function setupListeners() {
   autoUpdater.on("checking-for-update", () => {
     console.log("[Updater] Vérification des mises à jour…");
@@ -118,11 +121,6 @@ function setupListeners() {
   });
 }
 
-/**
- * Lance la vérification des mises à jour
- * @param {BrowserWindow} mainWindow - référence vers la fenêtre principale
- * @param {boolean} silent - si true, ne log pas d'erreur si pas de MAJ (au démarrage)
- */
 async function checkForUpdates(mainWindow, silent = false) {
   mainWindowRef = mainWindow;
   try {
@@ -136,9 +134,6 @@ async function checkForUpdates(mainWindow, silent = false) {
   }
 }
 
-/**
- * Télécharge la mise à jour disponible
- */
 async function downloadUpdate() {
   try {
     console.log("[Updater] Démarrage du téléchargement…");
@@ -149,29 +144,19 @@ async function downloadUpdate() {
   }
 }
 
-/**
- * Quitte et installe la mise à jour
- */
 function installUpdate() {
   console.log("[Updater] Installation et redémarrage…");
-  // setImmediate pour laisser l'IPC répondre avant de quitter
   setImmediate(() => {
     autoUpdater.quitAndInstall(false, true);
   });
 }
 
-/**
- * Ferme la popup de mise à jour
- */
 function closeUpdateWindow() {
   if (updateWindow && !updateWindow.isDestroyed()) {
     updateWindow.close();
   }
 }
 
-/**
- * Initialise le module (à appeler au démarrage de l'app)
- */
 function init() {
   setupListeners();
   console.log("[Updater] Module initialisé");

@@ -24,6 +24,23 @@ let mainWindow = null;
 let loginWindow = null;
 
 // ============================================================
+// ICÔNE
+// ============================================================
+function getAppIconPath() {
+  const candidates = [];
+  if (app.isPackaged) {
+    candidates.push(path.join(process.resourcesPath, "logo.ico"));
+    candidates.push(path.join(process.resourcesPath, "images", "logo.ico"));
+  } else {
+    candidates.push(path.join(__dirname, "assets", "images", "logo.ico"));
+  }
+  for (const p of candidates) {
+    if (fs.existsSync(p)) return p;
+  }
+  return undefined;
+}
+
+// ============================================================
 // FENÊTRE PRINCIPALE
 // ============================================================
 function createWindow() {
@@ -35,7 +52,7 @@ function createWindow() {
     frame: false,
     backgroundColor: "#0b0d12",
     show: false,
-    icon: path.join(__dirname, "assets", "images", "logo.ico"),
+    icon: getAppIconPath(),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -79,6 +96,7 @@ function openLumaliaLogin() {
     parent: mainWindow,
     modal: false,
     show: false,
+    icon: getAppIconPath(),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
@@ -394,12 +412,10 @@ app.whenReady().then(async () => {
     console.log("[Discord] Désactivé dans les paramètres");
   }
 
-  // Init de l'auto-updater
   updater.init();
 
   createWindow();
 
-  // Check des mises à jour au démarrage (silencieux en dev)
   setTimeout(() => {
     if (!isDev) {
       updater.checkForUpdates(mainWindow, true);
